@@ -100,7 +100,6 @@ var alki = new CookieShop('Alki', 3, 24, 2.6, 'alki');
 
 //Variables for event handler
 var cookieForm = document.getElementById('cookie-form');
-var cookieSubmit = document.getElementById('cookie-submit');
 
 
 // Event handler function
@@ -108,10 +107,20 @@ var cookieSubmit = document.getElementById('cookie-submit');
 function handleNewStore(event){
   event.preventDefault();
 
-  if (!event.target.storeName.value || !event.target.min.value || !event.target.max.value || !event.target.avgCookie.value) {
+  var storeName = event.target.storeName.value;
+  var min = event.target.min.value;
+  var max = event.target.max.value;
+  var avgCookie = event.target.avgCookie.value;
+
+  event.target.storeName.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.avgCookie.value = null;
+
+  if (!storeName || !min || !max || !avgCookie) {
     return alert('Fields cannot be empty!');
   }
-  new CookieShop(event.target.storeName.value, event.target.min.value, event.target.max.value, event.target.avgCookie.value);
+  new CookieShop(storeName, min, max, avgCookie);
 }
 
 // Event handler
