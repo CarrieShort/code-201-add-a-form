@@ -111,6 +111,7 @@ function handleNewStore(event){
   if (!event.target.storeName.value || !event.target.min.value || !event.target.max.value || !event.target.avgCookie.value) {
     return alert('Fields cannot be empty!');
   }
+  new CookieShop(event.target.storeName.value, event.target.min.value, event.target.max.value, event.target.avgCookie.value);
 }
 
 // Event handler
