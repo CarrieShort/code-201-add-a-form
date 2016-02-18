@@ -52,23 +52,23 @@ CookieShop.prototype.generateHourly = function() {
 })();
 
 function renderStore(tbl, store) {
-    var trEl_two = document.createElement('tr');
-    var thEl_four = document.createElement('th');
-    thEl_four.textContent = store.name;
-    trEl_two.id = store.id;
-    trEl_two.appendChild(thEl_four);
+  var trEl_two = document.createElement('tr');
+  var thEl_four = document.createElement('th');
+  thEl_four.textContent = store.name;
+  trEl_two.id = store.id;
+  trEl_two.appendChild(thEl_four);
 
-    for (var j = 0; j < hours.length; j++) {
-      var tdEl_one = document.createElement('td');
-      tdEl_one.textContent = store.hourlyCookies[j];
-      trEl_two.appendChild(tdEl_one);
-    }
+  for (var j = 0; j < hours.length; j++) {
+    var tdEl_one = document.createElement('td');
+    tdEl_one.textContent = store.hourlyCookies[j];
+    trEl_two.appendChild(tdEl_one);
+  }
 
-    var tdEl_two = document.createElement('td');
-    tdEl_two.textContent = store.dailyCookies;
-    trEl_two.appendChild(tdEl_two);
+  var tdEl_two = document.createElement('td');
+  tdEl_two.textContent = store.dailyCookies;
+  trEl_two.appendChild(tdEl_two);
 
-    tbl.appendChild(trEl_two);
+  tbl.appendChild(trEl_two);
 }
 
 function renderNew(name, minimum, maximum, average) {
@@ -97,3 +97,21 @@ var seaTac = new CookieShop('SeaTac Airport', 6, 44, 1.2, 'seatac');
 var southCenter = new CookieShop('Southcenter Mall', 11, 38, 1.9, 'south');
 var bellevue = new CookieShop('Bellevue Square', 20, 48, 3.3, 'bellevue');
 var alki = new CookieShop('Alki', 3, 24, 2.6, 'alki');
+
+//Variables for event handler
+var cookieForm = document.getElementById('cookie-form');
+var cookieSubmit = document.getElementById('cookie-submit');
+
+
+// Event handler function
+
+function handleNewStore(event){
+  event.preventDefault();
+
+  if (!event.target.storeName.value || !event.target.min.value || !event.target.max.value || !event.target.avgCookie.value) {
+    return alert('Fields cannot be empty!');
+  }
+}
+
+// Event handler
+cookieForm.addEventListener('submit', handleNewStore);
